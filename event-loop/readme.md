@@ -19,7 +19,7 @@
 
 ### nodejs 事件循环
 
-事件循环是 nodejs 处理非堵塞 I/O 的一种操作机制。
+事件循环是 nodejs 处理非堵塞 I/O 的解决方案,它基于 events and callbacks 机制。
 
 #### 什么要有 event-loop
 

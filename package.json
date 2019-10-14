@@ -1,0 +1,8 @@
+{
+  "name": "node-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ddzyan/node-project.git",
+  "author": "dingdz <ddzyan@163.com>",
+  "license": "MIT"
+}
