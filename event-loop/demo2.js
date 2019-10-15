@@ -25,12 +25,12 @@ function fib(num) {
 const startTime = Date.now();
 
 setTimeout(() => {
-  console.log('setTimeout 100 time %s ms', Date.now() - startTime);
-}, 100);
+  console.log('setTimeout 5 time %s ms', Date.now() - startTime);
+}, 5);
 
 setTimeout(() => {
-  console.log('setTimeout 10 time %s ms', Date.now() - startTime);
-}, 8);
+  console.log('setTimeout 15 time %s ms', Date.now() - startTime);
+}, 15);
 
 someAsyncOperation(() => {
   console.log('someAsyncOperation time %s ms', Date.now() - startTime);
