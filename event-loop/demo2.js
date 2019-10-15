@@ -10,10 +10,10 @@
  * setTimeout 100 time 1329 ms
  */
 
-const fs = require("fs");
+const fs = require('fs');
 
 const someAsyncOperation = cb => {
-  fs.readFile("./abc.txt", cb);
+  fs.readFile('./abc.txt', cb);
 };
 
 function fib(num) {
@@ -25,17 +25,17 @@ function fib(num) {
 const startTime = Date.now();
 
 setTimeout(() => {
-  console.log("setTimeout 100 time %s ms", Date.now() - startTime);
+  console.log('setTimeout 100 time %s ms', Date.now() - startTime);
 }, 100);
 
-/* setTimeout(() => {
-  console.log("setTimeout 10 time %s ms", Date.now() - startTime);
-}, 10); */
+setTimeout(() => {
+  console.log('setTimeout 10 time %s ms', Date.now() - startTime);
+}, 8);
 
 someAsyncOperation(() => {
-  console.log("someAsyncOperation time %s ms", Date.now() - startTime);
+  console.log('someAsyncOperation time %s ms', Date.now() - startTime);
   fib(30);
-  console.log("fib time %s ms", Date.now() - startTime);
+  console.log('fib time %s ms', Date.now() - startTime);
 });
 
 /* setImmediate(() => {
