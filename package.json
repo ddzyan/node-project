@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/ddzyan/node-project.git",
   "author": "dingdz <ddzyan@163.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.10.0"
+  }
 }
