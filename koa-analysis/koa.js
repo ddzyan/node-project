@@ -35,6 +35,7 @@ class Koa {
     return handleRequest;
   }
 
+  // 执行中间件
   handleRequest(ctx, fnMiddleware) {
     const onerror = err => ctx.onerror(err);
     const handleResponse = () => respond(ctx);
@@ -42,6 +43,12 @@ class Koa {
     return result.then(handleResponse).catch(onerror);
   }
 
+  /**
+   * 将 req 和 res 封装到 ctx
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} ctx
+   */
   createContext(req, res) {
     let context = Object.create(null);
     context.req = req;
@@ -50,7 +57,8 @@ class Koa {
   }
 
   /**
-   * 创建服务，执行中间件
+   * 创建服务
+   * 封装中间件，传入 createServer
    * 启动监听
    */
   listen(...args) {
@@ -58,11 +66,13 @@ class Koa {
     return server.listen(...args);
   }
 
+  // 监听错误输出
   onerror(err) {
     console.error(err);
   }
 }
 
+// 标准输出处理
 function respond(ctx) {
   const res = ctx.res;
   let body = ctx.body;

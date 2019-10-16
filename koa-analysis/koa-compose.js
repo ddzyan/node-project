@@ -1,10 +1,11 @@
 /*
-  ! 你可以试试的嘛？
-  ? 你不知道对错
-  Todo this function
-  Todo this function
-  //试试
-  * 你又不会死
+  ! 中间件的封装
+  * 组装中间件
+  * 1. 类型检查
+  * 2. 递归调用
+  Todo 类型检擦
+  Todo 闭包，保存上下文
+  Todo 递归调用，执行中间件
   */
 
 function compose(middleware) {

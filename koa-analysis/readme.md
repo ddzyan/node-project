@@ -1,21 +1,12 @@
 ## koa 源码解析
 
+中间件执行流程：
+![image](http://www.zmscode.cn/mdImages/koa-design.png)
+
 核心实现实现内容：
 
-### 服务的创建
-
-koa 的服务配置代码就是对 http 模块的封装，具体如下：
-
-```js
-/**
- * koa/application.js 74行
- */
-listen(...args) {
-    debug('listen');
-    const server = http.createServer(this.callback());
-    return server.listen(...args);
-  }
-});
-```
-
-### 中间件递归实现
+- 服务监听
+- 中间件添加
+- 实现 ctx 封装 req,res
+- 中间件洋葱模型执行流程
+- 结果和错误统一处理
