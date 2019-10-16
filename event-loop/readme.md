@@ -2,6 +2,8 @@
 
 - https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/
 - https://nodejs.org/zh-cn/docs/guides/dont-block-the-event-loop/
+- https://segmentfault.com/a/1190000019117230
+- https://cnodejs.org/topic/5da554bcece3813ad9ba1d81#5da6ceecece3813ad9ba220f
 
 了解的内容：
 
@@ -24,6 +26,12 @@
 #### 什么要有 event-loop
 
 nodejs 运行环境为单线程，特点为事件驱动，异步非堵塞 I/O。实现这个的原理为:nodejs 虽然为一个单线程任务，但是底层有 libuv 实现了一个事件循环线程。nodejs 将耗时的异步任务推送进 事件循环 队列中，然后就可以处理其他任务，避免了主线程堵塞引起效率低问题。在 事件循环 遍历中监测到任务状态完成，将通知主线继续执行任务。
+
+主线程在执行完同步代码时，会将过程中遇到的异步任务分配到 evnt-loop 对应阶段的模块去执行。当任务执行完毕后，会将任务的回调函数添加到对应阶段的回调函数中。event-loop 将按照顺序循环遍历和执行，每个阶段的回调函数。
+
+当队列中的回调函数用尽或者最大的回调函数执行，event-loop 将进入下一个阶段。
+
+最大的回调函数：系统设置的回调函数队列上线，防止回调函数过多，影响执行效率。
 
 #### event-loop 遍历顺序
 
