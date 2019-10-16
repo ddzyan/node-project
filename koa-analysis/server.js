@@ -1,4 +1,4 @@
-const Koa = require("./koa-test");
+const Koa = require("./koa");
 const app = new Koa();
 
 app.use(async ctx => {
