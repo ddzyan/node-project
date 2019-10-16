@@ -5,7 +5,7 @@
 
 const http = require("http");
 
-const compose = require("./koa-compose");
+const compose = require("./koa-compose-test");
 
 class Koa {
   constructor() {
