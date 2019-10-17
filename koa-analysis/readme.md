@@ -1,6 +1,6 @@
 ## koa 源码解析
 
-中间件执行流程：
+重点是实现了中间件的洋葱模型递归调用，中间件执行流程：
 ![image](http://www.zmscode.cn/mdImages/koa-design.png)
 
 核心实现实现内容：
