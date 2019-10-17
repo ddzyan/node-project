@@ -9,3 +9,5 @@
 ### 更新记录
 
 1. [event-loop 理解 demo](https://github.com/ddzyan/node-project/tree/master/event-loop)
+2. [koa 源码解析](https://github.com/ddzyan/node-project/tree/master/koa-analysis)
+3. [promise 原生实现](https://github.com/ddzyan/node-project/tree/master/promise)
