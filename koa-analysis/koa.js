@@ -1,54 +1,68 @@
 /**
- * 参数为传入的所有中间件组成的数组
- * 返回一个 promise 对象
+ * koa 对象
+ * todo 启动服务，监听端口
+ * todo 添加中间件
+ * todo 中间件处理，添加到 createServer()中
+ * todo 创建 ctx 对象
+ * todo 统一的错误和正确信息返回
  */
 
 const http = require("http");
 
-const compose = require("./koa-compose-test");
-
+const compose = require("./koa-compose");
 class Koa {
+  /**
+   * md 中间件数组
+   */
   constructor() {
-    this.middleware = [];
+    this.md = [];
   }
 
   /**
-   * 注册中间件
-   * 返回实例，用于链式持续添加
-   * @param {Function} fn
-   * @returns Koa
+   * 添加中间件
+   * @param {function} fn
+   * @return {Object} Koa
    */
   use(fn) {
-    if (typeof fn !== "function") throw new Error("中间件必须是函数");
-    this.middleware.push(fn);
+    if (typeof fn !== "function") throw new Error("中间件必须为函数");
+    this.md.push(fn);
     return this;
   }
 
+  /**
+   * todo 组装中间件，实现递归调用
+   * todo 提供闭包函数
+   * todo 组件 res,res 对象到 ctx 中
+   * todo 中间件的调用
+   */
   callback() {
-    const fn = compose(this.middleware);
+    const fn = compose(this.md);
 
-    const handleRequest = (req, res) => {
+    const requestHandle = (req, res) => {
       const ctx = this.createContext(req, res);
-      return this.handleRequest(ctx, fn);
+      return this.requestHandle(ctx, fn);
     };
 
-    return handleRequest;
-  }
-
-  // 执行中间件
-  handleRequest(ctx, fnMiddleware) {
-    const onerror = err => ctx.onerror(err);
-    const handleResponse = () => respond(ctx);
-    const result = fnMiddleware(ctx);
-    return result.then(handleResponse).catch(onerror);
+    return requestHandle;
   }
 
   /**
-   * 将 req 和 res 封装到 ctx
-   * @param {object} req
-   * @param {object} res
-   * @returns {object} ctx
+   * 错误信息统一处理
+   * 返回信息封装
    */
+  requestHandle(context, fn) {
+    const errorHandle = err => this.onError(err);
+    const resHandle = () => respond(context);
+    fn(context)
+      .then(resHandle)
+      .catch(errorHandle);
+  }
+
+  onError(error) {
+    console.error(error);
+  }
+
+  // 封装context对象
   createContext(req, res) {
     let context = Object.create(null);
     context.req = req;
@@ -56,26 +70,17 @@ class Koa {
     return context;
   }
 
-  /**
-   * 创建服务
-   * 封装中间件，传入 createServer
-   * 启动监听
-   */
+  // 创建服务，监听端口
   listen(...args) {
     const server = http.createServer(this.callback());
     return server.listen(...args);
   }
-
-  // 监听错误输出
-  onerror(err) {
-    console.error(err);
-  }
 }
 
-// 标准输出处理
 function respond(ctx) {
-  const res = ctx.res;
-  let body = ctx.body;
+  const { res } = ctx;
+  let { body } = ctx;
+  if (typeof body === "object") body = JSON.stringify(body);
   res.end(body);
 }
 

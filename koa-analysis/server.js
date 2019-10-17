@@ -1,8 +1,16 @@
 const Koa = require("./koa");
 const app = new Koa();
 
+app.use(async (ctx, next) => {
+  ctx.body = "hello";
+  await next();
+  ctx.body = {
+    data: ctx.body
+  };
+});
+
 app.use(async ctx => {
-  ctx.body = "hello word";
+  ctx.body = ctx.body + " word";
 });
 
 app.listen(3000, () => {
