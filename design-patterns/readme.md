@@ -1,3 +1,7 @@
+参考资料：
+
+- https://www.jianshu.com/p/c62229477fc7
+
 ## 简介
 
 常用的设计模式 demo，以及适用的场景分析
