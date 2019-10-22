@@ -12,3 +12,4 @@
 2. [koa 源码解析](https://github.com/ddzyan/node-project/tree/master/koa-analysis)
 3. [promise 原生实现](https://github.com/ddzyan/node-project/tree/master/promise)
 4. [EventEmit 原生实现](https://github.com/ddzyan/node-project/tree/master/eventEmitter-analysis)
+5. [常见的设计模式示例，以及使用场景介绍](https://github.com/ddzyan/node-project/tree/master/design-patterns)
