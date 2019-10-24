@@ -1,3 +1,10 @@
+/**
+ * 核心为2点
+ * 1 内部状态管理 Deferred
+ * 2 外部结果返回 PromiseA
+ * 3 PromiseA 继承 EventEmitter，Deferred 通过消息发送，通知指定回调函数
+ */
+
 const { EventEmitter } = require('events');
 
 const PENDING = 0;
