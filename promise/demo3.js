@@ -4,6 +4,7 @@
  */
 
 const { EventEmitter } = require("events");
+const fs = require("fs");
 
 const PADDING = 0;
 const FULFILLED = 1;
@@ -83,11 +84,11 @@ class Deferred {
 
   callback() {
     const that = this;
-    return function(err, file) {
+    return function(err, data) {
       if (err) {
-        return that.reject2(err);
+        return that.reject(err);
       }
-      that.resolve2(file);
+      that.resolve(data);
     };
   }
 
@@ -118,13 +119,28 @@ class Deferred {
   }
 }
 
-const timeout = function(i) {
+/* const timeout = function(i) {
   const deferred = new Deferred();
   setTimeout(function() {
     deferred.resolve(`timeout${i} is ok`);
   }, 1000);
   return deferred.promise;
+}; */
+
+/**
+ * 包装 fs.readFile(filename,(error,data))类型函数
+ * @param {function} fn
+ */
+const some = function(fn) {
+  return function(...args) {
+    const deferred = new Deferred();
+    args.push(deferred.callback()); //参数整合，将回调函数放在末尾，前面则为传入的文件名称
+    fn.apply(null, args); //apply参数为数组方式传入，call除了第一个参数以外，其他按照顺序传入，bind 不传入参数
+    return deferred.promise;
+  };
 };
+
+const readFile = some(fs.readFile);
 
 /**
  * 链式调用
@@ -135,11 +151,11 @@ const timeout = function(i) {
  * 5. 是则将绑定在第一个 promise1 对象中的 queue 赋予 返回值的 promise2.queue
  * 6. 当前的promise2 赋值给 promise1,这样才可以触发绑定的then事件
  */
-timeout(1)
+readFile("./text/file1.txt")
   .then(data => {
-    console.log("链式调用1 :", data);
-    return timeout(2);
+    console.log("链式调用1 :", data.toString());
+    return readFile("./text/file2.txt");
   })
   .then(data => {
-    console.log("链式调用2 :", data);
+    console.log("链式调用2 :", data.toString());
   });
