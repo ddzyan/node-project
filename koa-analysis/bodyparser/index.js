@@ -14,7 +14,7 @@ module.exports = function() {
   return async function bodyParser(ctx, next) {
     const body =
       ctx.request.method === "GET" ? {} : parse(await parseBody(ctx.req));
-    ctx.req.body = body;
+    ctx.request.body = body;
     await next();
   };
 };

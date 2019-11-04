@@ -4,8 +4,8 @@ const app = new Koa();
 
 app.use(bodyparser());
 app.use(async (ctx, next) => {
-  console.log("获取 POST 请求参数", ctx.req.body);
-  console.log("获取 GET 请求参数", ctx.request.query);
+  console.log("获取 POST 请求参数", ctx.request.body);
+  console.log("获取 GET 请求参数", ctx.query);
   ctx.body = "hello";
   await next();
   ctx.body = {

@@ -32,6 +32,8 @@ curl http://localhost:3000/id?id=1
    2. 提供 query 属性，内部封装将原生 request.query 属性转换为对象，方便获取 GET 参数
    3. 提供 body 属性，获得 post 方法传递的参数(重点)
    4. 优化 bodyparser 方法，只有在非 GET method 的情况下，才监听 req 的事件
+4. 封装 context 对象
+   1. 使用事件委托模式，将 request 的方法和属性委托给 context 对象
 
 ## 注意
 

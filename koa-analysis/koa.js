@@ -11,6 +11,7 @@ const http = require("http");
 
 const compose = require("./koa-compose");
 const request = require("./request");
+const context = require("./context");
 
 class Koa {
   /**
@@ -19,6 +20,7 @@ class Koa {
   constructor() {
     this.middleware = [];
     this.request = Object.create(request);
+    this.context = Object.create(context);
   }
 
   /**
@@ -70,7 +72,7 @@ class Koa {
 
   // 封装context对象
   createContext(req, res) {
-    let context = Object.create(null);
+    let context = Object.create(this.context);
     const request = (context.request = Object.create(this.request));
     context.app = this;
     context.req = request.req = req;
