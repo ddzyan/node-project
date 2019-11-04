@@ -1,9 +1,12 @@
 const Koa = require("./koa");
+const bodyparser = require("./bodyparser");
 const app = new Koa();
 
+app.use(bodyparser());
 app.use(async (ctx, next) => {
+  console.log("获取 POST 请求参数", ctx.req.body);
+  console.log("获取 GET 请求参数", ctx.request.query);
   ctx.body = "hello";
-  console.log(ctx.request.query);
   await next();
   ctx.body = {
     data: ctx.body

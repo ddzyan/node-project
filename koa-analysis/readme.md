@@ -30,6 +30,8 @@ curl http://localhost:3000/id?id=1
 3. 封装 request
    1. 提供 url,origin,method 等属性设置和获得方法
    2. 提供 query 属性，内部封装将原生 request.query 属性转换为对象，方便获取 GET 参数
+   3. 提供 body 属性，获得 post 方法传递的参数(重点)
+   4. 优化 bodyparser 方法，只有在非 GET method 的情况下，才监听 req 的事件
 
 ## 注意
 
