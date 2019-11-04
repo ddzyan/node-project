@@ -1,3 +1,13 @@
+## 使用
+
+```shell
+yarn
+
+node ./server.js
+
+curl http://localhost:3000
+```
+
 ## koa 源码解析
 
 重点是实现了中间件的洋葱模型递归调用，中间件执行流程：
@@ -17,4 +27,6 @@
          2. 正确信息统一处理
 
 2. koa-compose:中间件封装，通过 next 实现洋葱模型调用
-3. 封装 request,response 对象
+3. 封装 request
+   1. 提供 url,origin,method 等属性设置和获得方法
+   2. 提供 query 属性，内部封装将原生 request.query 属性转换为对象，方便获取 GET 参数

@@ -18,7 +18,7 @@ class Koa {
    */
   constructor() {
     this.middleware = [];
-    this.request = request;
+    this.request = Object.create(request);
   }
 
   /**

@@ -6,6 +6,7 @@
   "author": "dingdz <ddzyan@163.com>",
   "license": "MIT",
   "dependencies": {
-    "parseurl": "^1.3.3"
+    "parseurl": "^1.3.3",
+    "querystring": "^0.2.0"
   }
 }

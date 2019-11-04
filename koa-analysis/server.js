@@ -3,7 +3,7 @@ const app = new Koa();
 
 app.use(async (ctx, next) => {
   ctx.body = "hello";
-  // console.log(ctx.req.query);
+  console.log(ctx.request.query);
   await next();
   ctx.body = {
     data: ctx.body
