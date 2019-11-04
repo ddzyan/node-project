@@ -2,8 +2,8 @@
  * 封装 request 对象
  * 方便获取和设置报文属性
  */
-const parse = require("parseurl");
-const qs = require("querystring");
+const url = require("url");
+//const qs = require("querystring");
 
 module.exports = {
   // 设置报文头部信息
@@ -47,16 +47,17 @@ module.exports = {
    */
   get query() {
     const str = this.querystring;
-    const c = (this._querycache = this._querycache || {});
-    return c[str] || (c[str] = qs.parse(str));
+    /*   const c = (this._querycache = this._querycache || {});
+    return c[str] || (c[str] = qs.parse(str)); */
+    return str;
   },
 
   /**
-   * 将 this.req 转换为对象
+   * 将 this.req.url 转换为对象
    * 获取 query 属性
    */
   get querystring() {
     if (!this.req) return "";
-    return parse(this.req).query || "";
+    return url.parse(this.req.url, true).query || "";
   }
 };
