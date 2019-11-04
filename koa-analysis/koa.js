@@ -10,12 +10,15 @@
 const http = require("http");
 
 const compose = require("./koa-compose");
+const request = require("./request");
+
 class Koa {
   /**
    * md 中间件数组
    */
   constructor() {
-    this.md = [];
+    this.middleware = [];
+    this.request = request;
   }
 
   /**
@@ -25,7 +28,7 @@ class Koa {
    */
   use(fn) {
     if (typeof fn !== "function") throw new Error("中间件必须为函数");
-    this.md.push(fn);
+    this.middleware.push(fn);
     return this;
   }
 
@@ -36,7 +39,7 @@ class Koa {
    * todo 中间件的调用
    */
   callback() {
-    const fn = compose(this.md);
+    const fn = compose(this.middleware);
 
     const requestHandle = (req, res) => {
       const ctx = this.createContext(req, res);
@@ -50,10 +53,13 @@ class Koa {
    * 错误信息统一处理
    * 返回信息封装
    */
-  requestHandle(context, fn) {
+  requestHandle(ctx, fnMiddleware) {
+    const res = ctx.res;
+    res.statusCode = 404;
+
     const errorHandle = err => this.onError(err);
-    const resHandle = () => respond(context);
-    fn(context)
+    const resHandle = () => respond(ctx);
+    return fnMiddleware(ctx)
       .then(resHandle)
       .catch(errorHandle);
   }
@@ -65,7 +71,9 @@ class Koa {
   // 封装context对象
   createContext(req, res) {
     let context = Object.create(null);
-    context.req = req;
+    const request = (context.request = Object.create(this.request));
+    context.app = this;
+    context.req = request.req = req;
     context.res = res;
     return context;
   }
@@ -81,7 +89,7 @@ function respond(ctx) {
   const { res } = ctx;
   let { body } = ctx;
   if (typeof body === "object") body = JSON.stringify(body);
-  res.end(body);
+  return res.end(body);
 }
 
 module.exports = Koa;

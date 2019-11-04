@@ -15,23 +15,18 @@ function compose(md) {
     if (typeof fn !== "function") throw new Error("中间件必须是函数");
   }
 
-  return function(context) {
-    const index = -1;
+  return function(context, next) {
+    let index = -1;
     return dispatch(0);
     function dispatch(i) {
-      if (i <= index) throw new Error("超出数组边界");
+      if (i <= index)
+        return Promise.reject(new Error("next() called multiple times"));
+      index = i;
       let fn = md[i];
       if (i === md.length) fn = next;
+      if (!fn) return Promise.resolve();
       try {
-        return Promise.resolve(
-          fn(context, function() {
-            /**
-             * 执行下一个回调函数
-             * 执行完毕后，再执行原函数剩余部分，实现洋葱模型
-             */
-            return dispatch(i + 1);
-          })
-        );
+        return Promise.resolve(fn(context, dispatch.bind(null, i + 1)));
       } catch (error) {
         return Promise.reject(error);
       }

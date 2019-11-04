@@ -17,3 +17,4 @@
          2. 正确信息统一处理
 
 2. koa-compose:中间件封装，通过 next 实现洋葱模型调用
+3. 封装 request,response 对象

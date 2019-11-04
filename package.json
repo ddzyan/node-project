@@ -5,5 +5,7 @@
   "repository": "https://github.com/ddzyan/node-project.git",
   "author": "dingdz <ddzyan@163.com>",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "parseurl": "^1.3.3"
+  }
 }
