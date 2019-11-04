@@ -5,7 +5,7 @@ yarn
 
 node ./server.js
 
-curl http://localhost:3000
+curl http://localhost:3000/id?id=1
 ```
 
 ## koa 源码解析
@@ -30,3 +30,14 @@ curl http://localhost:3000
 3. 封装 request
    1. 提供 url,origin,method 等属性设置和获得方法
    2. 提供 query 属性，内部封装将原生 request.query 属性转换为对象，方便获取 GET 参数
+
+## 注意
+
+koa2 基础框架不支持直接获得 POST 请求的参数，需要使用 koa-bodyparser 中间件
+
+```js
+const bodyParser = require("koa-bodyparser");
+app.use(bodyParser());
+```
+
+经过中间件解析后，请求参数会被绑定在 request.body 属性上

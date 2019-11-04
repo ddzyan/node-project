@@ -24,12 +24,12 @@ module.exports = {
     return this.req.url;
   },
 
-  // 源路径
+  // 获取URL的来源，包括 protocol 和 host,http://example.com
   get origin() {
     return `${this.protocol}://${this.host}`;
   },
 
-  // 获取完整路径
+  // 获取完整的请求URL，包括 protocol，host 和 url
   get href() {},
 
   // 获取请求方法
@@ -42,6 +42,7 @@ module.exports = {
   },
 
   /**
+   * 获取解析的查询字符串
    * 将 query 字符串转换为对象
    */
   get query() {
