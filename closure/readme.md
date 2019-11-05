@@ -10,6 +10,7 @@
 参考文档：
 
 - http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures
 
 ### 闭包是什么
 
@@ -54,3 +55,4 @@ function outer () {
 
 1. 函数内部定义一个“全局”的变量，使每次函数执行访问的都是同一个变量 demo4.js
 2. 使用闭包模拟一个私有方法或者变量 demo3.js
+3. 用闭包实现工厂函数 demo5.js
