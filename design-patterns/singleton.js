@@ -1,3 +1,7 @@
+/**
+ * 单例模式
+ */
+
 class App {
   constructor() {
     // 如果已存在对应的实例

@@ -1,3 +1,7 @@
+/**
+ * 发布/订阅模式
+ */
+
 class PubSub {
   constructor() {
     this.handles = Object.create(null);
