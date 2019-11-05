@@ -56,3 +56,4 @@ function outer () {
 1. 函数内部定义一个“全局”的变量，使每次函数执行访问的都是同一个变量 demo4.js
 2. 使用闭包模拟一个私有方法或者变量 demo3.js
 3. 用闭包实现工厂函数 demo5.js
+4. 使用闭包解决循环中变量共享导致的错误 --- demo6-loop-modified.js 和 demo6-loop.js
