@@ -1,6 +1,7 @@
 参考资料：
 
 - https://www.jianshu.com/p/c62229477fc7
+- https://zhuanlan.zhihu.com/p/40772736
 
 ## 简介
 
@@ -51,3 +52,4 @@
 
 1. demo-catch.js 使用代理模式，实现缓存代理
 2. demo-validators 使用代理模式，实现参数赋值，验证代理
+3. demo-private 使用代理模式，实现类的私有属性
