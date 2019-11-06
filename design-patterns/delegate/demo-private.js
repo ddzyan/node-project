@@ -9,13 +9,15 @@ const account = {
   _age: 21
 };
 
-const accountProxy = new Proxy(obj, {
+const accountProxy = new Proxy(account, {
   get: function(target, p) {
     if (propsFilter(p)) {
       const value = Reflect.get(target, p);
+      console.log("Reflect get value", Reflect.get(target, p));
+      console.log("account get value", target[p]);
       // 如果返回的使方法，需要将this指向代理对象
       if (typeof value === "function") {
-        value.bind(obj);
+        value.bind(account);
       }
       return value;
     } else {
