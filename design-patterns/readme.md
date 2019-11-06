@@ -2,6 +2,7 @@
 
 - https://www.jianshu.com/p/c62229477fc7
 - https://zhuanlan.zhihu.com/p/40772736
+- http://es6.ruanyifeng.com/#docs/prox
 
 ## 简介
 
@@ -48,7 +49,9 @@
 
 ### 代理模式
 
-实例代码 delegate :
+将对象的一些方法，提供给其他对象进行代理操作。在 js 中可以使用 Proxy 对象 ，来拦截被代理对象的一些默认操作，例如：取值，赋值，删除等
+
+#### 适用场景
 
 1. demo-catch.js 使用代理模式，实现缓存代理
 2. demo-validators 使用代理模式，实现参数赋值，验证代理
