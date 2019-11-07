@@ -34,6 +34,7 @@ curl http://localhost:3000/id?id=1
    4. 优化 bodyparser 方法，只有在非 GET method 的情况下，才监听 req 的事件
 4. 封装 context 对象
    1. 使用事件委托模式，将 request 的方法和属性委托给 context 对象
+5. 封装 response 对象
 
 ## 注意
 
