@@ -13,7 +13,7 @@
 
 ### 服务架构
 
-![image](http://zmscode.cn/mdImages/multi-process.png)
+![image](http://zmscode.cn/mdImages/multi-process.jpg)
 
 ### 备注
 
