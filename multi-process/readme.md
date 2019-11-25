@@ -13,6 +13,9 @@ nodejs 是单进程单线程服务，凭借着异步，非堵塞和事件驱动�
 
 以上的所有问题，都将在项目 demo 中进行解决。
 
+服务架构
+![image](http://zmscode.cn/mdImages/multi-process.png)
+
 ### 测试
 
 ```shell
