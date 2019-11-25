@@ -16,3 +16,8 @@ const proto = (module.exports = {});
 delegates(proto, "request")
   .method("get")
   .access("query");
+
+delegates(proto, "response")
+  .method("set")
+  .access("body")
+  .access("status");

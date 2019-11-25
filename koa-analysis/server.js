@@ -8,9 +8,8 @@ app.use(async (ctx, next) => {
   console.log("获取 GET 请求参数", ctx.query);
   ctx.body = "hello";
   await next();
-  ctx.body = {
-    data: ctx.body
-  };
+  ctx.status = 200;
+  ctx.body = Buffer.from(ctx.body);
 });
 
 app.use(async ctx => {

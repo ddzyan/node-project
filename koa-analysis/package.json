@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "cache-content-type": "^1.0.1",
     "delegates": "^1.0.0"
   }
 }

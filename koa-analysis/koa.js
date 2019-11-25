@@ -12,6 +12,7 @@ const http = require("http");
 const compose = require("./koa-compose");
 const request = require("./request");
 const context = require("./context");
+const response = require("./response");
 
 class Koa {
   /**
@@ -21,6 +22,7 @@ class Koa {
     this.middleware = [];
     this.request = Object.create(request);
     this.context = Object.create(context);
+    this.response = Object.create(response);
   }
 
   /**
@@ -73,10 +75,11 @@ class Koa {
   // 封装context对象
   createContext(req, res) {
     let context = Object.create(this.context);
+    const response = (context.response = Object.create(this.response));
     const request = (context.request = Object.create(this.request));
     context.app = this;
     context.req = request.req = req;
-    context.res = res;
+    context.res = response.res = res;
     return context;
   }
 
@@ -88,9 +91,15 @@ class Koa {
 }
 
 function respond(ctx) {
-  const { res } = ctx;
-  let { body } = ctx;
-  if (typeof body === "object") body = JSON.stringify(body);
+  let { res, body } = ctx;
+
+  // 处理json
+  if (typeof body === "string") return res.end(body);
+  // 处理buffer
+  if (Buffer.isBuffer(body)) return res.end(body);
+  // 处理 object
+  body = JSON.stringify(body);
+  ctx.length = Buffer.byteLength(body);
   return res.end(body);
 }
 
