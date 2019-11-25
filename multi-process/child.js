@@ -1,7 +1,7 @@
 const http = require("http");
 
 const server = http.createServer(function(req, res) {
-  throw new Error("意外退出");
+  //throw new Error("意外退出");
   res.writeHead(200, { "Content-Type": "text/palin" });
   res.end(`hello word processId ${process.pid}`);
 });
