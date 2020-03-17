@@ -1,6 +1,6 @@
 const http = require("http");
 
-const server = http.createServer(function(req, res) {
+const server = http.createServer(function (req, res) {
   //throw new Error("意外退出");
   res.writeHead(200, { "Content-Type": "text/palin" });
   res.end(`hello word processId ${process.pid}`);
@@ -23,7 +23,7 @@ process.on("uncaughtException", err => {
   // 通知父进程，创建新的进程处理请求
   process.send({ act: "suicide" });
   // 关闭连接的服务，停止接收请求
-  server.close(function() {
+  server.close(function () {
     // 关闭完成后，退出进程
     process.exit(1);
   });

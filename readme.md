@@ -20,3 +20,4 @@
 6. [了解 V8 垃圾回收机制](https://github.com/ddzyan/node-project/tree/master/trash-recycling)
 7. [了解 闭包 的定义和使用场景](https://github.com/ddzyan/node-project/tree/master/closure)
 8. [对 nodejs 服务进行多进程部署](https://github.com/ddzyan/node-project/tree/master/multi-process)
+8. [nodejs服务的优化退出和平滑重启](https://github.com/ddzyan/node-project/tree/master/process-safe-exit)
