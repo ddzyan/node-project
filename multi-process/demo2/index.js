@@ -1,8 +1,6 @@
 const os = require('os');
 const cluster = require('cluster');
 
-const server = require('./server');
-
 const works = new Map();
 if (cluster.isMaster) {
   /**
@@ -21,5 +19,5 @@ if (cluster.isMaster) {
   });
 } else {
   // 不是主线程则创建服务,特点为共享一个TCP端口，并且使用负载均衡
-  server();
+  require('./app');
 }
