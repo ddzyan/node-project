@@ -12,7 +12,10 @@
 以上的所有问题，都将在项目 demo 中进行解决。
 
 ### 服务架构
+多进程服务架构
+![image](http://zmscode.cn/mdImages/multi-process2.jpg)
 
+工作进程管理
 ![image](http://zmscode.cn/mdImages/multi-process.jpg)
 
 ### 备注
