@@ -13,7 +13,7 @@
 
 ### 服务架构
 多进程服务架构
-![image](http://zmscode.cn/mdImages/multi-process2.jpg)
+![image](http://zmscode.cn/mdImages/multi-process2.png)
 
 工作进程管理
 ![image](http://zmscode.cn/mdImages/multi-process.jpg)
