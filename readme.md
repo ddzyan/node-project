@@ -24,3 +24,5 @@
 10. [代码实现后台部署nodejs项目](https://github.com/ddzyan/node-project/tree/master/deploy)
 11. [nodejs异步编程实现](https://github.com/ddzyan/node-project/tree/master/async)
 12. [nodejs buffer与stream之间的关系](https://github.com/ddzyan/node-project/tree/master/upload-stream)
+13. [nodejs redis基础操作demo](https://github.com/ddzyan/node-project/tree/master/redis-demo)
+
