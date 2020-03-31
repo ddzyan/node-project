@@ -25,4 +25,5 @@
 11. [nodejs异步编程实现](https://github.com/ddzyan/node-project/tree/master/async)
 12. [nodejs buffer与stream之间的关系](https://github.com/ddzyan/node-project/tree/master/upload-stream)
 13. [nodejs redis基础操作demo](https://github.com/ddzyan/node-project/tree/master/redis-demo)
+13. [经典算法 nodejs实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
 
