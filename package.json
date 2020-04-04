@@ -5,5 +5,12 @@
   "repository": "https://github.com/ddzyan/node-project.git",
   "author": "dingdz <ddzyan@163.com>",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0"
+  }
 }

@@ -6,7 +6,10 @@
 - 设计模式
 - 常用代码
 
-### 更新记录
+### 更新内容
+1. 添加eslint代码校验
+
+### 项目路径介绍
 
 1. [event-loop 理解 demo](https://github.com/ddzyan/node-project/tree/master/event-loop)
 2. [koa 源码解析](https://github.com/ddzyan/node-project/tree/master/koa-analysis)
@@ -25,5 +28,6 @@
 11. [nodejs异步编程实现](https://github.com/ddzyan/node-project/tree/master/async)
 12. [nodejs buffer与stream之间的关系](https://github.com/ddzyan/node-project/tree/master/upload-stream)
 13. [nodejs redis基础操作demo](https://github.com/ddzyan/node-project/tree/master/redis-demo)
-13. [经典算法 nodejs实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
+14. [经典算法 nodejs实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
+15. [nodejs 原生重要模块使用记录](https://github.com/ddzyan/node-project/tree/master/module)
 
