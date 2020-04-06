@@ -1,57 +1,71 @@
-const redis = require('redis');
+const Redis = require('ioredis');
 const { redisConf } = require('../config.json');
 
-const redisClient = redis.createClient(redisConf)
-
-// 监听redis服务器发出的任何报错信息
-redisClient.on("error", function (error) {
-  console.error("RedisServer is error!", error);
-});
-
-// 监听连接成功
-redisClient.on("connect", function () {
-  console.log("RedisServer is connected!");
-
-});
-
-// 监听连接断开
-redisClient.on("end", function () {
-  console.log("RedisServer is end!");
-});
+const redis = new Redis(redisConf);
 
 const db = {
   /**
    * @description 添加字符串
-   * @param {string} key 
-   * @param {string} value 
+   * @param {string} key
+   * @param {string} value
    * @param {string} expire 过期时间,传入负值则为永久有效
-   * @param {Function} cb 回调函数
-   * @returns {Function} cb(error, reply)
+   * @returns {Promise<boolean>} 返回操作结果
    */
-  set: (key, value, expire, cb) => {
-    redisClient.set(key, value, (error, reply) => {
-      if (error) {
-        return cb(error, null);
-      }
+  set: async (key, value, expire) => {
+    await redis.set(key, value);
+    if (Number.isNaN(expire)) {
+      await redis.expire(key, expire);
+    }
 
-      // 判断是否为数字
-      if (isNaN(expire) && expire > 0) {
-        redisClient.expire(key, Number.parseInt(expire));
-      }
-
-      return cb(null, reply);
-    })
+    return true;
   },
 
-  get: (key, cb) => {
-    redisClient.get(key, (error, result) => {
-      if (error) {
-        return cb(error, null);
+  /**
+   * @description 获取string value
+   * @param {string} key redis-key
+   * @param {Function} cb 回调函数
+   * @returns {Promise<string>} value
+   */
+  get: async (key) => {
+    const value = await redis.get(key);
+    return value;
+  },
+
+  /**
+   * @description redis分布式锁
+   * @param {string} key redis-key
+   * @param {number} [expire=60] expire 过期时间,默认60
+   * @param {Function} cb 回调函数
+   * @returns {Promise<boolean>} lock是否成功
+   */
+  lock: async (key, expire = 60) => {
+    try {
+      const LOCK_KEY = `lock:${key}`;
+      const LOCK_VALUE = Date.now().toString();
+      const keyExist = await redis.exists(LOCK_KEY);
+      // 若 key 存在返回 1 ，否则返回 0
+      if (keyExist) {
+        // 检查是否加锁,返回-1则表示没有加锁
+        const lockTime = await redis.ttl(LOCK_KEY);
+        if (Object.is(lockTime, -1)) {
+          const setLockRes = await redis.expire(LOCK_KEY, expire);
+          console.log(setLockRes);
+        }
+        console.log('需要等待%d秒', lockTime);
+        return false;
       }
-      return cb(null, result);
-    })
-  }
-}
+      const setexRes = await redis.setex(LOCK_KEY, expire, LOCK_VALUE);
+      return Object.is(setexRes, 'OK');
+    } catch (error) {
+      throw new Error('加锁异常');
+    }
+  },
+
+  unlock: async (key) => {
+    const delRes = await redis.del(`lock:${key}`);
+    return Object.is(delRes, 1);
+  },
+};
 
 
 module.exports = db;

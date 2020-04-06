@@ -13,6 +13,6 @@
   "author": "ddz",
   "license": "ISC",
   "dependencies": {
-    "redis": "^3.0.2"
+    "ioredis": "^4.16.1"
   }
 }
