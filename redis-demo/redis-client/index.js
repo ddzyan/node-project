@@ -2,6 +2,7 @@ const Redis = require('ioredis');
 const { redisConf } = require('../config.json');
 
 const redis = new Redis(redisConf);
+const LOCK_PREFIX = 'LOCK:';
 
 const db = {
   /**
@@ -40,8 +41,9 @@ const db = {
    */
   lock: async (key, expire = 60) => {
     try {
-      const LOCK_KEY = `lock:${key}`;
-      const LOCK_VALUE = Date.now().toString();
+      const LOCK_KEY = `${LOCK_PREFIX}${key}`;
+      // 锁的value=currentTime+expireTime
+      const LOCK_VALUE = Date.now() + 60 * 1000;
       const keyExist = await redis.exists(LOCK_KEY);
       // 若 key 存在返回 1 ，否则返回 0
       if (keyExist) {
@@ -61,9 +63,15 @@ const db = {
     }
   },
 
+
   unlock: async (key) => {
-    const delRes = await redis.del(`lock:${key}`);
+    const delRes = await redis.del(`${LOCK_PREFIX}${key}`);
     return Object.is(delRes, 1);
+  },
+
+  getLockExpireTime: async (key) => {
+    const res = await redis.get(`${LOCK_PREFIX}${key}`);
+    return res;
   },
 };
 
