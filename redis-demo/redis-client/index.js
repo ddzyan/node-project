@@ -33,13 +33,13 @@ const db = {
   },
 
   /**
-   * @description redis分布式锁
+   * @description 采用setex实现redis分布式锁
    * @param {string} key redis-key
    * @param {number} [expire=60] expire 过期时间,默认60
    * @param {Function} cb 回调函数
    * @returns {Promise<boolean>} lock是否成功
    */
-  lock: async (key, expire = 60) => {
+  setexLock: async (key, expire = 60) => {
     try {
       const LOCK_KEY = `${LOCK_PREFIX}${key}`;
       // 锁的value=currentTime+expireTime
@@ -64,12 +64,46 @@ const db = {
   },
 
 
+  /**
+   * @description 解除分布式锁
+   * @param {string} key 加锁的key
+   * @returns {Promise<boolean>} true表示成功，false表示失败
+   */
   unlock: async (key) => {
     const delRes = await redis.del(`${LOCK_PREFIX}${key}`);
     return Object.is(delRes, 1);
   },
+  /**
+     * @description 采用setnx实现redis分布式锁
+     * @param {string} key redis-key
+     * @param {number} [expire=60] expire 过期时间,默认60
+     * @param {Function} cb 回调函数
+     * @returns {Promise<boolean>} lock是否成功
+     */
+  setnxLock: async (key, expire = 60) => {
+    try {
+      const LOCK_KEY = `${LOCK_PREFIX}${key}`;
+      const LOCK_VALUE = Date.now() + 60 * 1000;
+      const setnxRes = await redis.setnx(LOCK_KEY, LOCK_VALUE);
+      // 返回0表示已经存在添加失败，1表示添加成功
+      if (Object.is(setnxRes, 1)) {
+        await redis.expire(LOCK_KEY, expire);
+        return true;
+      }
+      // 检查过期时间
+      const expireTime = await redis.ttl(LOCK_KEY);
+      // -1表示未设置过期时间
+      if (Object.is(expireTime, -1)) {
+        await redis.expire(LOCK_KEY, expire);
+      }
 
-  getLockExpireTime: async (key) => {
+      return false;
+    } catch (error) {
+      throw new Error('加锁异常');
+    }
+  },
+
+  getLockValue: async (key) => {
     const res = await redis.get(`${LOCK_PREFIX}${key}`);
     return res;
   },
