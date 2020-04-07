@@ -1,7 +1,7 @@
 ## 简介
 nodejs连接redis数据库，进行基础类型数据操作。
 
-![设计架构：](https://i.imgur.com/v75M4VB.png)
+![设计架构：](https://i.imgur.com/C0YNihT.png)
 
 ### 实现功能
 1. 封装redis对象
