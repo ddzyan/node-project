@@ -4,6 +4,7 @@ let b = 2;
 [a, b] = [b, a];
 console.log(a, b);
 
+// 理解数据存储方式
 const set = new Set();
 set.add([1]);
 set.add([1]);
