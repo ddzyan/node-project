@@ -13,7 +13,7 @@ function twoSum_1(nums, target) {
     const startNumber = nums.pop();
     const endIndex = nums.indexOf(target - startNumber);
     if (endIndex !== -1) {
-      return [i, endIndex]
+      return [i, endIndex];
     }
     i--;
   }
@@ -29,7 +29,7 @@ function twoSum_2(nums, target) {
   for (let i = 0; i < len; i++) {
     for (let j = i + 1; j < len; j++) {
       if ((nums[i] + nums[j]) === target) {
-        return [i, j]
+        return [i, j];
       }
     }
   }
