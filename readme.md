@@ -30,4 +30,5 @@
 13. [nodejs redis基础操作demo](https://github.com/ddzyan/node-project/tree/master/redis-demo)
 14. [经典算法 nodejs实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
 15. [nodejs 原生重要模块使用记录](https://github.com/ddzyan/node-project/tree/master/module)
+16. [一些需要理解原理的js代码](https://github.com/ddzyan/node-project/tree/master/funnyCode)
 
