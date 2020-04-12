@@ -2,7 +2,7 @@
  * @Author: dingdongzhao
  * @Date: 2019-11-25 11:39:05
  * @Last Modified by: dingdongzhao
- * @Last Modified time: 2019-11-25 14:12:07
+ * @Last Modified time: 2020-04-12 10:26:04
  */
 
 /**
@@ -16,9 +16,9 @@
  * 3. 限制进程频繁重启
  */
 
-const net = require("net"); // 创建TCP服务
-const cp = require("child_process"); // 创建子进程
-const cpus = require("os").cpus();
+const net = require('net'); // 创建TCP服务
+const cp = require('child_process'); // 创建子进程
+const cpus = require('os').cpus();
 
 const server = net.createServer().listen(1777);
 
@@ -26,7 +26,7 @@ const works = new Map();
 
 const limit = cpus.length;
 const intervalTime = 6 * 1000;
-let restart = [];
+const restart = [];
 
 /**
  * 检查进程是否频繁重启
@@ -35,7 +35,7 @@ let restart = [];
  * 2. 当记录数量超过上线，则只保存最新的limit条数
  * 3. 当记录数量大于等于limit,并且最新启动时间与第一个启动的时间间隔，大于设置的时间，则返回 true
  */
-const isTooManyCreate = function() {
+const isTooManyCreate = () => {
   const time = new Date();
   const length = restart.push(time);
   if (length > limit) {
@@ -43,8 +43,8 @@ const isTooManyCreate = function() {
   }
 
   return (
-    restart.length >= limit &&
-    restart[restart.length - 1] - restart[0] > intervalTime
+    restart.length >= limit
+    && restart[restart.length - 1] - restart[0] > intervalTime
   );
 };
 
@@ -57,20 +57,20 @@ const isTooManyCreate = function() {
  * 这里需要注意的是
  * 多进程监听统一端口，但是文件描述符在同一时间只能被一个进程使用，也就是说客服端发送给服务器的请求，只能由一个服务抢占处理。
  */
-const createWork = function() {
+const createWork = () => {
   // 防止频繁重启
   if (isTooManyCreate()) {
-    //process.emit("");
+    // process.emit("");
     return;
   }
-  const work = cp.fork("./child.js");
+  const work = cp.fork('./child.js');
   /**
    * 监听子线程退出
    * 退出则删除管理对象
    */
-  work.on("exit", function() {
+  work.on('exit', () => {
     works.delete(works.pid);
-    console.log("work exit :", work.pid);
+    console.log('work exit :', work.pid);
   });
 
   /**
@@ -78,14 +78,14 @@ const createWork = function() {
    *
    * suicide 意外退出则启动一个新的进程
    */
-  work.on("message", data => {
-    if (data.act === "suicide") {
-      console.log("work  uncaughtException exit:", work.pid);
+  work.on('message', (data) => {
+    if (data.act === 'suicide') {
+      console.log('work  uncaughtException exit:', work.pid);
       createWork();
     }
   });
 
-  work.send("server", server);
+  work.send('server', server);
   works.set(work.pid, work);
 };
 
@@ -99,7 +99,7 @@ for (let index = 0; index < cpus.length; index++) {
 /**
  * 主进程退出，则关闭所有启动的子进程
  */
-process.on("exit", function() {
+process.on('exit', () => {
   for (const work of works) {
     work.kill();
   }
