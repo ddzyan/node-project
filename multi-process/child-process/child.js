@@ -1,5 +1,6 @@
 const http = require('http');
 
+const MAX_EXIT_TIME = 3 * 1000;
 const server = http.createServer((req, res) => {
   // throw new Error("意外退出");
   res.writeHead(200, { 'Content-Type': 'text/palin' });
@@ -29,10 +30,9 @@ process.on('uncaughtException', (err) => {
   });
 
   // 延迟计时器，防止关闭失败，导致进程卡死
-  const exitTimer = setTimeout(() => {
+  setTimeout(() => {
     process.exit(1);
-  }, 1 * 1000);
-  exitTimer.unref();
+  }, MAX_EXIT_TIME);
 });
 
 console.log('child start processId = ', process.pid);
