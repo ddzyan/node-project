@@ -5,19 +5,19 @@ const cluster = require('cluster');
 const MAXTIMEOUT = 10 * 1000;
 const unhandledRejections = new Map();
 
-const server = http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
   res.end('hello word');
-}).listen(3000, function () {
+}).listen(3000, () => {
   console.log('服务启动成功');
-})
+});
 
 // 未try catch 捕获的异常
 process.on('uncaughtException', (err, origin) => {
   // 首先记录异常信息
   fs.writeSync(
     process.stderr.fd,
-    `捕获的异常: ${err}\n` +
-    `异常的来源: ${origin}`
+    `捕获的异常: ${err}\n`
+    + `异常的来源: ${origin}`,
   );
   try {
     /**
@@ -30,15 +30,17 @@ process.on('uncaughtException', (err, origin) => {
       process.exit(1);
     }, 1000);
 
-    killTime.unref();
-    server.close();
+    server.close(() => {
+      killTime.unref();
+      process.exit(1);
+    });
     if (cluster.worker) {
       cluster.worker.disconnect();
     }
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 // 未被捕获的promise异常
 process.on('unhandledRejection', (reason, promise) => {
@@ -50,10 +52,9 @@ process.on('unhandledRejection', (reason, promise) => {
     console.log(reason);
     unhandledRejections.delete(promise);
   }, MAXTIMEOUT);
-
-})
+});
 
 // promise异常被处理
 process.on('rejectionHandled', (promise) => {
   unhandledRejections.has(promise) && unhandledRejections.delete(promise);
-})  
+});
