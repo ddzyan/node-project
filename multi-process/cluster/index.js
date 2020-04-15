@@ -14,7 +14,7 @@ if (cluster.isMaster) {
     works.set(worker.process.pid, worker);
   }
 
-  cluster.on('exit', function (worker, code, signal) {
+  cluster.on('exit', (worker, code, signal) => {
     works.delete('process exit', worker.process.pid);
   });
 } else {
