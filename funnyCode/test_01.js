@@ -19,3 +19,7 @@ console.log(map.values());
 
 console.log(Object.is(3, 3.0));
 console.log(Object.is([1], [1]));
+
+let a = 2;
+let b = a, c, d = 10;
+console.log(`a=${a}  b=${b}  c=${c}  d=${d}`);
