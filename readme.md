@@ -7,7 +7,8 @@
 - 常用代码
 
 ### 更新内容
-1. 添加eslint代码校验
+
+1. 添加 eslint 代码校验
 
 ### 项目路径介绍
 
@@ -23,12 +24,12 @@
 6. [了解 V8 垃圾回收机制](https://github.com/ddzyan/node-project/tree/master/trash-recycling)
 7. [了解 闭包 的定义和使用场景](https://github.com/ddzyan/node-project/tree/master/closure)
 8. [nodejs 多进程部署，进程通讯和进程管理](https://github.com/ddzyan/node-project/tree/master/multi-process)
-9. [nodejs服务的优化退出和平滑重启](https://github.com/ddzyan/node-project/tree/master/process-safe-exit)
-10. [代码实现后台部署nodejs项目](https://github.com/ddzyan/node-project/tree/master/deploy)
-11. [nodejs异步编程实现](https://github.com/ddzyan/node-project/tree/master/async)
-12. [nodejs buffer与stream之间的关系](https://github.com/ddzyan/node-project/tree/master/upload-stream)
-13. [nodejs redis基础操作demo](https://github.com/ddzyan/node-project/tree/master/redis-demo)
-14. [经典算法 nodejs实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
+9. [nodejs 服务的优化退出和平滑重启](https://github.com/ddzyan/node-project/tree/master/process-safe-exit)
+10. [代码实现后台部署 nodejs 项目](https://github.com/ddzyan/node-project/tree/master/deploy)
+11. [nodejs 异步编程实现](https://github.com/ddzyan/node-project/tree/master/async)
+12. [nodejs buffer 与 stream 之间的关系](https://github.com/ddzyan/node-project/tree/master/upload-stream)
+13. [nodejs redis 基础操作 demo](https://github.com/ddzyan/node-project/tree/master/redis-demo)
+14. [经典算法 nodejs 实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
 15. [nodejs 原生重要模块使用记录](https://github.com/ddzyan/node-project/tree/master/module)
-16. [一些需要理解原理的js代码](https://github.com/ddzyan/node-project/tree/master/funnyCode)
-
+16. [一些需要理解原理的 js 代码](https://github.com/ddzyan/node-project/tree/master/funnyCode)
+17. [jwt-auth jwt 介绍和加密原理解析](https://github.com/ddzyan/node-project/tree/master/jwt-auth)
