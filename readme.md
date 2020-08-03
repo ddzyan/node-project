@@ -32,4 +32,4 @@
 14. [经典算法 nodejs 实现](https://github.com/ddzyan/node-project/tree/master/arithmetic)
 15. [nodejs 原生重要模块使用记录](https://github.com/ddzyan/node-project/tree/master/module)
 16. [一些需要理解原理的 js 代码](https://github.com/ddzyan/node-project/tree/master/funnyCode)
-17. [jwt-auth jwt 介绍和加密原理解析](https://github.com/ddzyan/node-project/tree/master/jwt-auth)
+17. [jwt 介绍和加密原理解析](https://github.com/ddzyan/node-project/tree/master/jwt-auth)
