@@ -1,20 +1,21 @@
-/**
- * 在原基础上，将 PromiseA 和 Deferred 函数合并为 MyPromise，使使用方法和 Promise 一致
- */
-
 const { EventEmitter } = require('events');
+
+// TODO 待优化
+const isFunction = function (cb) {
+  return typeof cb === 'function';
+};
 
 const STATUS = {
   PENDING: 0,
-  FULFILLED: 1,
-  REJECTED: 2,
+  RESOLVE: 1,
+  REJECT: 2,
 };
 
 class MyPromise extends EventEmitter {
   constructor(handler) {
     super();
-    if (typeof handler !== 'function') {
-      return new TypeError('handler must be function');
+    if (!isFunction(handler)) {
+      throw new TypeError('handler must be function');
     }
     this._status = STATUS.PENDING;
     try {
@@ -25,27 +26,29 @@ class MyPromise extends EventEmitter {
   }
 
   _resolve(data) {
+    this._status = STATUS.RESOLVE;
     this.emit('success', data);
-    this._status = STATUS.FULFILLED;
   }
 
   _reject(error) {
+    this._status = STATUS.REJECT;
     this.emit('error', error);
-    this._status = STATUS.REJECTED;
   }
 
   then(cb) {
-    if (typeof cb !== 'function') {
-      return new TypeError('cb must be function');
+    if (!isFunction(cb)) {
+      throw new TypeError('cb must be function');
     }
     this.on('success', cb);
+    return this;
   }
 
   catch(cb) {
-    if (typeof cb !== 'function') {
-      return new TypeError('cb must be function');
+    if (!isFunction(cb)) {
+      throw new TypeError('cb must be function');
     }
     this.on('error', cb);
+    return this;
   }
 }
 
