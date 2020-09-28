@@ -1,0 +1,17 @@
+{
+  "name": "largeFileCutt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "clean": "rm -rf ./output/*.txt && rm -rf ./merge/*.txt",
+    "merge": "node ./merge.js",
+    "breakUp": "node ./breakUp.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
