@@ -1,24 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 
-const LENGTH = 10;
+function breakUp({ inDir, inFileName, outDir, cutSize }) {
+  const inFilePath = fs.statSync(path.join(inDir, inFileName));
 
-function breakUp(inFilePath, outDir) {
-  const file = fs.statSync(inFilePath);
+  const chunkCount = Math.ceil(file.size / cutSize);
 
-  const chunkSize = Math.ceil(file.size / LENGTH);
-
-  for (let i = 0; i < LENGTH; i++) {
-    const readStream = fs.createReadStream(
-      path.join('./input', 'bigFile.txt'),
-      {
-        start: i * chunkSize,
-        end: (i + 1) * chunkSize,
-      }
-    );
+  for (let i = 0; i < chunkCount; i++) {
+    const readStream = fs.createReadStream(inFilePath, {
+      start: i * cutSize,
+      end: (i + 1) * cutSize,
+    });
 
     const writeStream = fs.createWriteStream(
-      path.join(outDir, `bigFile${i}.txt`),
+      path.join(outDir, `${inFileName}-${i}`),
       {
         flags: 'w',
       }
@@ -28,10 +23,10 @@ function breakUp(inFilePath, outDir) {
   }
 }
 
-function merge(outDir, mergeFilePath) {
-  for (let i = 0; i < LENGTH; i++) {
+function merge({ inDir, inFileName, mergeFilePath, count }) {
+  for (let i = 0; i < count; i++) {
     const readStream = fs.createReadStream(
-      path.join(outDir, `bigFile${i}.txt`)
+      path.join(inDir, `${inFileName}-${i}`)
     );
 
     const writeStream = fs.createWriteStream(mergeFilePath, {
