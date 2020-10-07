@@ -996,7 +996,7 @@
                     "architecture":"amd64",
                     "features":"",
                     "variant":null,
-                     "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
+                    "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
                     "os":"linux",
                     "os_features":"",
                     "os_version":null,
@@ -2030,7 +2030,7 @@
     ]
 }
 
-{{
+{
     "count":85,
     "next":null,
     "previous":null,
@@ -3028,7 +3028,7 @@
                     "architecture":"amd64",
                     "features":"",
                     "variant":null,
-                     "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
+                    "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
                     "os":"linux",
                     "os_features":"",
                     "os_version":null,
@@ -4062,7 +4062,7 @@
     ]
 }
 
-{{
+{
     "count":85,
     "next":null,
     "previous":null,
@@ -5060,7 +5060,7 @@
                     "architecture":"amd64",
                     "features":"",
                     "variant":null,
-                     "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
+                    "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
                     "os":"linux",
                     "os_features":"",
                     "os_version":null,
@@ -6094,7 +6094,7 @@
     ]
 }
 
-{{
+{
     "count":85,
     "next":null,
     "previous":null,
@@ -7092,7 +7092,7 @@
                     "architecture":"amd64",
                     "features":"",
                     "variant":null,
-                     "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
+                    "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
                     "os":"linux",
                     "os_features":"",
                     "os_version":null,
@@ -8126,7 +8126,7 @@
     ]
 }
 
-{{
+{
     "count":85,
     "next":null,
     "previous":null,
@@ -9124,7 +9124,7 @@
                     "architecture":"amd64",
                     "features":"",
                     "variant":null,
-                     "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
+                    "digest":"sha256:0a8b6f21d5117599d273f2086d0aa378d2548dfce08f6f951979352f5da822fd",
                     "os":"linux",
                     "os_features":"",
                     "os_version":null,

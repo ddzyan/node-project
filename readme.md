@@ -33,4 +33,4 @@
 15. [nodejs 原生重要模块使用记录](.//module)
 16. [一些需要理解原理的 js 代码](.//funnyCode)
 17. [jwt 介绍和加密原理解析](.//jwt-auth)
-18. [超大文件切割和合并](./largeFileCutt)
+18. [任何格式的超大文件切割和合并](./largeFileCutt)

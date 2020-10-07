@@ -19,5 +19,5 @@ if (cluster.isMaster) {
   });
 } else {
   // 不是主线程则创建服务,特点为共享一个TCP端口，并且使用负载均衡
-  require('./app');
+  require('./child');
 }

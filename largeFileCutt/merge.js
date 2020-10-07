@@ -1,7 +1,16 @@
 const path = require('path');
 const { merge } = require('./lib');
 
-const outDir = path.join(__dirname, '/output');
-const mergeFilePath = path.join(__dirname, '/merge', 'bigFile.txt');
+const inDir = path.join(__dirname, '/output');
+const outDir = path.join(__dirname, '/merge');
+const outFile = 'bigFile.txt';
+const inFile = 'bigFile';
+const format = '.txt';
 
-merge(outDir, mergeFilePath);
+merge({
+  inDir,
+  outDir,
+  outFile,
+  inFile,
+  format,
+});
