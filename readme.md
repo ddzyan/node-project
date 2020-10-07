@@ -12,11 +12,11 @@
 
 ### 项目路径介绍
 
-1. [event-loop 理解 demo](.//event-loop)
-2. [koa 源码解析](.//koa-analysis)
-3. [promise 原生实现](.//promise)
-4. [EventEmit 原生实现](.//eventEmitter-analysis)
-5. [常见的设计模式示例，以及使用场景介绍](.//design-patterns)
+1. [event-loop 理解 demo](./event-loop)
+2. [koa 源码解析](./koa-analysis)
+3. [promise 原生实现](./promise)
+4. [EventEmit 原生实现](./eventEmitter-analysis)
+5. [常见的设计模式示例，以及使用场景介绍](./design-patterns)
    1. 单例模式
    2. 适配器模式
    3. 发布/订阅模式
