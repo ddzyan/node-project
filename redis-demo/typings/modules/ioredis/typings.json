@@ -1,8 +1,0 @@
-{
-  "resolution": "main",
-  "tree": {
-    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/28f528ffabd7bb4c91e86ebf6f57632d200551eb/ioredis/index.d.ts",
-    "raw": "registry:dt/ioredis#0.0.0+20161224103521",
-    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/28f528ffabd7bb4c91e86ebf6f57632d200551eb/ioredis/index.d.ts"
-  }
-}
