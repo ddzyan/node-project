@@ -14,9 +14,13 @@ class SubOperation {
   }
 }
 
+const strategy = {
+  add: AddOperation,
+  sub: SubOperation,
+};
 class Context {
-  constructor(Operation) {
-    this.strategy = new Operation();
+  constructor(type) {
+    this.strategy = new strategy[type]();
   }
 
   doOperation(numberA, numberB) {
@@ -24,8 +28,8 @@ class Context {
   }
 }
 
-const ctx1 = new Context(AddOperation);
+const ctx1 = new Context('add');
 console.log(ctx1.doOperation(1, 2));
 
-const ctx2 = new Context(SubOperation);
+const ctx2 = new Context('sub');
 console.log(ctx2.doOperation(3, 1));
