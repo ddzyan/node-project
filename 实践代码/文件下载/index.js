@@ -2,8 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
-const url =
-  'https://npm.taobao.org/mirrors/node/v14.12.0/node-v14.12.0-x64.msi';
+const url = 'https://npm.taobao.org/mirrors/node/v14.12.0/node-v14.12.0-x64.msi';
 
 const main = async function () {
   const res = await downloadFile(url, './file', 'node-v14.12.0-x64.msi');
