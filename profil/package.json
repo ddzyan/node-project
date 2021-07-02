@@ -1,0 +1,12 @@
+{
+  "name": "profil",
+  "version": "1.0.0",
+  "description": "javascript 工程性能优化，主要为前后端的 cpu 和 内存 的性能分析和优化过程记录",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
