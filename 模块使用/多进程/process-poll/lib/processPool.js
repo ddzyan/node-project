@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const { isCorrectType } = require('./util');
-const ProcessItem = require('./newProcessItem');
+const ProcessItem = require('./processItem');
 
 class ProcessPool {
   constructor({
