@@ -1,12 +1,8 @@
-// 上下文
 const path = require('path');
 
-// 用户代码
 async function task(workParam) {
   console.log(workParam);
 }
-
-// 模板代码
 /**
  * 当进程被子进程创建后，立刻执行工作任务
  */

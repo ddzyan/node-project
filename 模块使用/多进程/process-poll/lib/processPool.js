@@ -144,7 +144,7 @@ class ProcessPool {
     }
   }
 
-  listenProcessState() {
+  listenProcessState(workProcess, params) {
     workProcess.process.on('message', (message) => {
       if (message === 'finish') {
         workProcess.finishTask();
