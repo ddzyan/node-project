@@ -8,6 +8,7 @@
   "dependencies": {
     "autocannon": "^7.3.0",
     "eslint-plugin-import": "^2.23.4",
+    "heapdump": "^0.3.15",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

@@ -29,7 +29,11 @@ parentPort.on('message', async (work) => {
 });
 
 // 监听线程未捕获的异常
-process.on('uncaughtException', (error) => {});
+process.on('uncaughtException', (...rest) => {
+  console.error('uncaughtException', ...rest);
+});
 
 // 监听线程未捕获的 promise 异常
-process.on('unhandledRejection', (error) => {});
+process.on('unhandledRejection', (...rest) => {
+  console.error('unhandledRejection', ...rest);
+});

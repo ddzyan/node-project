@@ -77,18 +77,19 @@ class ThreadPool {
 
     this.queue = [];
     this.workPool = {};
-    this.workerQueue = [];
+    this.threadQueue = [];
   }
 
   // 支持空闲退出
   pollIdle() {
     const timer = setTimeout(() => {
-      for (let i = 0; i < this.workerQueue.length; i++) {
-        const thread = this.workerQueue[i];
+      for (let i = 0; i < this.threadQueue.length; i++) {
+        const thread = this.threadQueue[i];
         if (
           thread.state === THREAD_STATE.IDLE
           && Date.now() - thread.lastWorkTime > this.maxIdleTime
         ) {
+          // 释放进程，此时会触发进程的 exit 事件
           thread.worker.terminate();
         }
       }
@@ -100,17 +101,19 @@ class ThreadPool {
   newThread() {
     const worker = new Worker(workerPath);
     const thread = new Thread(worker);
-    this.workerQueue.push(thread);
-
+    this.threadQueue.push(thread);
+    const { threadId } = worker;
     // 线程退出
     worker.on('exit', () => {
       // 找到该线程对应的数据结构，然后删除该线程的数据结构
-      const position = this.workerQueue.findIndex(
+      const position = this.threadQueue.findIndex(
         (thread) => thread.threadId === threadId,
       );
-      const exitedThread = this.workerQueue.splice(position, 1);
-      // 退出时状态是BUSY说明还在处理任务（非正常退出）
-      this.totalWork -= exitedThread.state === THREAD_STATE.BUSY ? 1 : 0;
+      if (position) {
+        const exitedThread = this.threadQueue.splice(position, 1);
+        // 退出时状态是BUSY说明还在处理任务（非正常退出）
+        this.totalWork -= exitedThread[0].state === THREAD_STATE.BUSY ? 1 : 0;
+      }
     });
 
     // 线程通讯
@@ -157,22 +160,22 @@ class ThreadPool {
 
   selectThead() {
     // 找出空闲的线程，把任务交给他
-    for (let i = 0; i < this.workerQueue.length; i++) {
-      if (this.workerQueue[i].state === THREAD_STATE.IDLE) {
-        return this.workerQueue[i];
+    for (let i = 0; i < this.threadQueue.length; i++) {
+      if (this.threadQueue[i].state === THREAD_STATE.IDLE) {
+        return this.threadQueue[i];
       }
     }
     // 没有空闲的则随机选择一个
-    return this.workerQueue[~~(Math.random() * this.workerQueue.length)];
+    return this.threadQueue[~~(Math.random() * this.threadQueue.length)];
   }
 
   submit(filename, options = {}) {
     return new Promise(async (resolve, reject) => {
       let thread;
-      if (this.workerQueue.length) {
+      if (this.threadQueue.length) {
         thread = this.selectThead();
         if (thread.state === THREAD_STATE.BUSY) {
-          if (this.workerQueue.length < this.coreThreads) {
+          if (this.threadQueue.length < this.coreThreads) {
             thread = this.newThread();
           } else if (this.totalWork + 1 > this.maxWork) {
             // 任务总数已经超过阈值，一定策略优化
