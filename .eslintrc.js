@@ -22,5 +22,6 @@ module.exports = {
     radix: 'off',
     'no-param-reassign': 'off',
     'no-extend-native': 'off',
+    'no-useless-catch': 'off',
   },
 };
