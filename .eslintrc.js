@@ -21,5 +21,6 @@ module.exports = {
     'global-require': 'off',
     radix: 'off',
     'no-param-reassign': 'off',
+    'no-extend-native': 'off',
   },
 };
