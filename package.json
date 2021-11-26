@@ -6,15 +6,15 @@
   "author": "ddzyan <ddzyan@163.com>",
   "license": "MIT",
   "dependencies": {
-    "autocannon": "^7.3.0",
-    "eslint-plugin-import": "^2.23.4",
+    "autocannon": "^7.5.0",
+    "eslint-plugin-import": "^2.25.3",
     "heapdump": "^0.3.15",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "eslint": "^7.29.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "14.2.1",
-    "prettier": "^2.3.1"
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-airbnb-base": "15.0.0",
+    "prettier": "^2.5.0"
   }
 }
