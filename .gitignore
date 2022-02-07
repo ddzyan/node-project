@@ -3,3 +3,4 @@ yarn.lock
 typings
 output
 merge
+package-lock.json
