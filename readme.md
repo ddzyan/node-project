@@ -7,6 +7,7 @@ javascript 核心功能源码实现，包括但不限于：常用框架底层实
 - [javascript 常见模块使用案例](https://github.com/ddzyan/node-module-example)
 - [javascript 数据结构，算法和设计模式实现](https://github.com/ddzyan/algorithmAndDataStructure)
 - [javascript 实践代码，框架源码，原生模块源码实现等](https://github.com/ddzyan/node-project)
+- [大前端面试汇总，包括但不限于：leetCode 刷题，剑指 offer，前端，nodejs，数据库等](https://github.com/ddzyan/node-project)
 
 ## 更新记录
 
