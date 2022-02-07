@@ -2,7 +2,17 @@
 
 javascript 核心功能源码实现，包括但不限于：常用框架底层实现，原生模块实现，常用方法和功能实现
 
+其他核心仓库请参考：
+
+- [javascript 常见模块使用案例](https://github.com/ddzyan/node-module-example)
+- [javascript 数据结构，算法和设计模式实现](https://github.com/ddzyan/algorithmAndDataStructure)
+- [javascript 实践代码，框架源码，原生模块源码实现等](https://github.com/ddzyan/node-project)
+
 ## 更新记录
+
+## [2022-02-07]
+
+项目结构优化
 
 ## 【2021-11-26】
 
