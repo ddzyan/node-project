@@ -6,6 +6,7 @@
   "author": "ddzyan <ddzyan@163.com>",
   "license": "MIT",
   "dependencies": {
+    "benchmark": "^2.1.4",
     "eslint-plugin-import": "^2.25.3",
     "heapdump": "^0.3.15"
   },
