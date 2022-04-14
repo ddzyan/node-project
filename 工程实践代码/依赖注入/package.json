@@ -1,0 +1,26 @@
+{
+  "name": "inject",
+  "version": "1.0.0",
+  "description": "依赖注入",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "node lib/app.js"
+  },
+  "author": "jason",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.15.0",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.15.4",
+    "@babel/preset-env": "^7.15.6"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13",
+    "typedi": "^0.10.0"
+  }
+}
